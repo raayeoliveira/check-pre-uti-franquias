@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check-list · Central da UTI × Pré-UTI de Franquias</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F3F6F9; --surface:#FFFFFF; --surface-2:#EBF0F5; --surface-3:#E1E7ED;
+  --ink:#151B26; --ink-2:#51626F; --ink-3:#888E9B;
+  --rule:#E1E7ED; --rule-2:#C0CDDD;
+  --brand:#0D4BD0; --brand-ink:#0D4BD0; --brand-soft:#F0F2FA; --brand-line:#C2C8F1;
+  --green:#41B592; --green-ink:#219653; --green-soft:#D9F0E9; --green-line:#BFEBDD;
+  --coral:#EB6957; --coral-ink:#CF4F44; --coral-soft:#F7E1E1; --coral-line:#E7B3B3;
+  --amber:#F5A623; --amber-ink:#51626F; --amber-soft:#FFF3E0; --amber-line:#FFCD80;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#151B26; --surface:#1B212C; --surface-2:#232B38; --surface-3:#2B3442;
+    --ink:#F3F6F9; --ink-2:#B2BBC3; --ink-3:#888E9B;
+    --rule:#2E3644; --rule-2:#3D4756;
+    --brand:#3CC3EE; --brand-ink:#3CC3EE; --brand-soft:#132A46; --brand-line:#2A5480;
+    --green:#54DBB2; --green-ink:#54DBB2; --green-soft:#16332B; --green-line:#2F6A5C;
+    --coral:#F0655A; --coral-ink:#F0655A; --coral-soft:#3A2220; --coral-line:#7D423A;
+    --amber:#FFCD80; --amber-ink:#FFCD80; --amber-soft:#332818; --amber-line:#7A5C2E;
+  }
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14.5px;line-height:1.62;margin:0;padding-inline:20px;padding-block:0 68px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto}
+h1,h2,h3,.dsp{font-family:Quicksand,"Trebuchet MS",sans-serif;text-wrap:balance;margin:0;line-height:1.2;font-weight:700}
+p{margin:0}
+b{font-weight:600}
+a{color:var(--brand-ink)}
+code{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;background:var(--surface-2);border:1px solid var(--rule);border-radius:5px;padding:1px 6px}
+
+.mast{padding-block:38px 26px;display:flex;flex-direction:column;gap:15px;border-bottom:3px solid var(--brand)}
+.kicker{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-ink)}
+.mast h1{font-size:clamp(26px,5.2vw,40px);letter-spacing:-.02em}
+.mast .deck{font-size:16px;color:var(--ink-2);max-width:66ch;line-height:1.58}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.badge{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.badge.g{background:var(--green-soft);color:var(--green-ink);border:1px solid var(--green-line)}
+.badge.a{background:var(--amber-soft);color:var(--amber-ink);border:1px solid var(--amber-line)}
+.badge.b{background:var(--brand-soft);color:var(--brand-ink);border:1px solid var(--brand-line)}
+.badge.r{background:var(--coral-soft);color:var(--coral-ink);border:1px solid var(--coral-line)}
+
+section{padding-block:36px 6px}
+section + section{border-top:1px solid var(--rule)}
+.shead{display:flex;gap:14px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.shead .sn{font-family:Quicksand,sans-serif;font-size:27px;font-weight:700;color:var(--brand);line-height:1;flex:none;font-variant-numeric:tabular-nums}
+h2{font-size:clamp(19px,3.1vw,24px);letter-spacing:-.016em}
+.sub{color:var(--ink-2);margin-top:4px;max-width:72ch;font-size:15px}
+
+.prog{margin-top:20px;background:var(--surface);border:1px solid var(--rule);border-radius:11px;padding:15px 17px;display:flex;flex-direction:column;gap:9px}
+.prog .ph{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.prog .pv{font-family:Quicksand,sans-serif;font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
+.prog .pl{font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.prog .track{height:8px;background:var(--surface-3);border-radius:999px;overflow:hidden}
+.prog .fill{height:100%;background:var(--brand);border-radius:999px;transition:width .3s ease}
+.prog .actions{display:flex;gap:9px;margin-top:4px;flex-wrap:wrap}
+.prog button{font-family:Inter,sans-serif;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:8px;border:1px solid var(--rule-2);background:var(--surface-2);color:var(--ink);cursor:pointer}
+.prog button:hover{border-color:var(--brand);color:var(--brand-ink)}
+
+.gaps{display:flex;flex-direction:column;gap:14px;margin-top:22px}
+.gp{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--coral);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;transition:opacity .2s}
+.gp[data-done="1"]{border-left-color:var(--green);opacity:.7}
+.gp[data-done="1"] .gtxt{text-decoration:line-through;color:var(--ink-3)}
+.gp .gh{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.gp .gnn{font-family:Quicksand,sans-serif;font-weight:700;font-size:14px;color:var(--coral-ink);background:var(--coral-soft);border:1px solid var(--coral-line);border-radius:6px;padding:2px 9px;flex:none}
+.gp[data-done="1"] .gnn{color:var(--green-ink);background:var(--green-soft);border-color:var(--green-line)}
+.gp .gtxt{font-family:Quicksand,sans-serif;font-weight:700;font-size:16.5px;letter-spacing:-.008em;flex:1;min-width:200px}
+.gp .prio{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.gp .prio.p1{background:var(--coral-soft);color:var(--coral-ink);border:1px solid var(--coral-line)}
+.gp .prio.p2{background:var(--amber-soft);color:var(--amber-ink);border:1px solid var(--amber-line)}
+.gp .prio.p3{background:var(--surface-2);color:var(--ink-2);border:1px solid var(--rule-2)}
+.gp .origin{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.gp .origin::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.gp .origin.tool{background:var(--brand-soft);color:var(--brand-ink);border:1px solid var(--brand-line)}
+.gp .origin.proc{background:#F5E6FA;color:#7B2CBF;border:1px solid #D9AEEA}
+.gp .origin.align{background:var(--amber-soft);color:#B87400;border:1px solid var(--amber-line)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .gp .origin.proc{background:#2E1A38;color:#C9A0DC;border-color:#5B3A6E}
+  :root:not([data-theme="light"]) .gp .origin.align{color:var(--amber);background:#332818;border-color:#7A5C2E}
+}
+
+.execsum{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.execsum .es{background:var(--surface);border:1px solid var(--rule);border-radius:11px;padding:14px 16px;display:flex;flex-direction:column;gap:7px;border-top:3px solid var(--rule-2)}
+.execsum .es.tool{border-top-color:var(--brand)}
+.execsum .es.proc{border-top-color:#7B2CBF}
+.execsum .es.align{border-top-color:var(--amber)}
+.execsum .es .esh{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.execsum .es.tool .esh{color:var(--brand-ink)}
+.execsum .es.proc .esh{color:#7B2CBF}
+.execsum .es.align .esh{color:#B87400}
+.execsum .es .esn{font-family:Quicksand,sans-serif;font-weight:700;font-size:26px;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.execsum .es .est{font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.execsum .es .est b{color:var(--ink);font-weight:600}
+.execsum .es ul{margin:4px 0 0;padding-left:16px;font-size:12.5px;color:var(--ink-2);line-height:1.55}
+.execsum .es ul li{margin:2px 0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .execsum .es.align .esh{color:var(--amber)}}
+@media (max-width:680px){.execsum{grid-template-columns:1fr}}
+
+.gp .body{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding-top:6px}
+.gp .row{display:flex;flex-direction:column;gap:3px}
+.gp .rk{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.gp .rv{font-size:13.5px;line-height:1.5;color:var(--ink)}
+.gp .rv.dim{color:var(--ink-2)}
+
+.gp .todo{margin-top:6px;padding-top:14px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:7px}
+.gp[data-done="1"] .todo{border-top-color:var(--green-line)}
+.gp .todo .tl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:2px}
+.gp .item{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;line-height:1.55}
+.gp .item input[type=checkbox]{margin-top:3px;accent-color:var(--brand);width:16px;height:16px;cursor:pointer;flex:none}
+.gp .item label{cursor:pointer;color:var(--ink-2)}
+.gp .item input:checked + label{text-decoration:line-through;color:var(--ink-3)}
+
+.gp .btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:6px}
+.gp .btn-done,.gp .btn-claude{font-family:Inter,sans-serif;font-size:12px;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer}
+.gp .btn-done{border:1px solid var(--green-line);background:var(--green-soft);color:var(--green-ink)}
+.gp[data-done="1"] .btn-done{background:var(--surface-2);border-color:var(--rule-2);color:var(--ink-2)}
+.gp[data-done="1"] .btn-done::before{content:"↺ Reabrir"}
+.gp:not([data-done="1"]) .btn-done::before{content:"✓ Marcar como resolvido"}
+.gp .btn-claude{border:1px solid var(--brand-line);background:var(--brand-soft);color:var(--brand-ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.gp .btn-claude:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+.gp .btn-claude::before{content:"✦"}
+
+.note{border-radius:11px;padding:14px 17px;font-size:14px;margin-top:20px;line-height:1.58;background:var(--brand-soft);border:1px solid var(--brand-line)}
+.note.warn{background:var(--amber-soft);border-color:var(--amber-line)}
+.note.stop{background:var(--coral-soft);border-color:var(--coral-line)}
+.note .lbl{display:block;font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px;color:var(--brand-ink)}
+.note.warn .lbl{color:var(--ink-2)}
+.note.stop .lbl{color:var(--coral-ink)}
+.note p + p{margin-top:6px}
+
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px}
+.legend i.p1{background:var(--coral)}
+.legend i.p2{background:var(--amber)}
+.legend i.p3{background:var(--ink-3)}
+
+.bklog{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+.bk{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--ink-3);border-radius:10px;padding:14px 17px;display:flex;flex-direction:column;gap:8px}
+.bk.tool{border-left-color:var(--brand)}
+.bk.proc{border-left-color:#7B2CBF}
+.bk.align{border-left-color:var(--amber)}
+.bk.autom{border-left-color:var(--green)}
+.bk.agente{border-left-color:var(--brand)}
+.bk.extens{border-left-color:var(--coral)}
+.bk .bkh{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.bk .bkn{font-family:Quicksand,sans-serif;font-weight:700;font-size:12.5px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--rule);border-radius:5px;padding:2px 8px;flex:none;font-variant-numeric:tabular-nums}
+.bk .bkt{font-family:Quicksand,sans-serif;font-weight:700;font-size:15px;letter-spacing:-.006em;flex:1;min-width:200px;line-height:1.35}
+.bk .bkd{font-size:13.5px;color:var(--ink-2);line-height:1.58}
+.bk .bkd b{color:var(--ink)}
+.bk .btn-claude{align-self:flex-end;font-family:Inter,sans-serif;font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:7px;cursor:pointer;border:1px solid var(--brand-line);background:var(--brand-soft);color:var(--brand-ink);margin-top:2px}
+.bk .btn-claude:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+.bk.proc .btn-claude{border-color:#D9AEEA;background:#F5E6FA;color:#7B2CBF}
+.bk.proc .btn-claude:hover{background:#7B2CBF;color:#fff;border-color:#7B2CBF}
+.bk.align .btn-claude{border-color:var(--amber-line);background:var(--amber-soft);color:#B87400}
+.bk.align .btn-claude:hover{background:var(--amber);color:#fff;border-color:var(--amber)}
+.bk.autom .btn-claude{border-color:var(--green-line);background:var(--green-soft);color:var(--green-ink)}
+.bk.autom .btn-claude:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.bk.extens .btn-claude{border-color:var(--coral-line);background:var(--coral-soft);color:var(--coral-ink)}
+.bk.extens .btn-claude:hover{background:var(--coral);color:#fff;border-color:var(--coral)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .bk.proc .btn-claude{background:#2E1A38;color:#C9A0DC;border-color:#5B3A6E}
+  :root:not([data-theme="light"]) .bk.align .btn-claude{background:#332818;color:var(--amber);border-color:#7A5C2E}
+}
+.bkgroup{margin-top:22px}
+.bkgroup > .bkhd{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-bottom:2px}
+.bkgroup > .bkhd .bkdot{width:9px;height:9px;border-radius:2px;flex:none}
+.bkgroup > .bkhd .bkdot.tool{background:var(--brand)}
+.bkgroup > .bkhd .bkdot.proc{background:#7B2CBF}
+.bkgroup > .bkhd .bkdot.align{background:var(--amber)}
+.bkgroup > .bkhd .bkdot.autom{background:var(--green)}
+.bkgroup > .bkhd .bkdot.agente{background:var(--brand)}
+.bkgroup > .bkhd .bkdot.extens{background:var(--coral)}
+.bkgroup > .bksub{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin-bottom:4px}
+
+/* Já está pronto (verde) */
+.doneblk{background:var(--green-soft);border:1px solid var(--green-line);border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin-top:20px}
+.doneblk .dh{font-family:Quicksand,sans-serif;font-weight:700;font-size:15px;color:var(--green-ink);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.doneblk .dh::before{content:"✓";font-size:17px}
+.doneblk ul{margin:4px 0 0;padding-left:20px;font-size:13.5px;color:var(--ink);line-height:1.58}
+.doneblk ul li{margin:3px 0}
+.doneblk ul li code{background:var(--surface);border-color:var(--green-line)}
+
+.foot{padding-block:30px 0;margin-top:34px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3);line-height:1.65}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+@media (max-width:680px){
+  .gp .body{grid-template-columns:1fr}
+}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">Seazone · Central da UTI · Kanban Franquias · Pré-UTI</p>
+  <h1>Check-list para o desenvolvedor</h1>
+  <p class="deck">7 gaps entre a Central da UTI (RPC <code>uti_leitura</code>) e o processo de <b>Pré-UTI de Franquias</b> da Isabella Bino (21/10/2026). Cada item diz se a origem está na <b>Ferramenta</b> (Central não implementa), no <b>Processo</b> (regra em aberto) ou no <b>Alinhamento</b> (as duas pontas não conversam). Cada gap tem botão <b>✦ Enviar ao Claude</b> — abre uma conversa nova com todo o contexto e os critérios de aceite prontos pra virar código.</p>
+  <div class="badges">
+    <span class="badge b">v1.0 · 21/10/2026</span>
+    <span class="badge r">6 críticos</span>
+    <span class="badge a">1 médio</span>
+    <span class="badge b">+ 20 backlog</span>
+    <span class="badge g">13 já prontos</span>
+  </div>
+</header>
+
+<div class="execsum">
+  <div class="es tool">
+    <span class="esh">Ferramenta · Central</span>
+    <span class="esn">0 gaps intrínsecos</span>
+    <p class="est">A Central implementa bem o fluxo <b>Alerta → Pré-UTI → Decisão → UTI</b>. Os dois e-mails automáticos (<code>preuti</code> e <code>preuti_extensao</code>) estão prontos. Os problemas da Central aparecem só no <b>alinhamento</b> com o processo novo da Isabella — ela não tem bug intrínseco, só não acompanha regras que ainda não foram parametrizadas.</p>
+  </div>
+  <div class="es proc">
+    <span class="esh">Processo · Pré-UTI</span>
+    <span class="esn">8 lacunas de regra</span>
+    <ul>
+      <li>SLA de resposta do gestor da franquia (após D+14) não definido</li>
+      <li>Modelos operacionais por trilha ainda só maduros em Manutenção</li>
+      <li>Critério formal de "caso grave" + "só alerta" + "Seazone não entregou estrutura"</li>
+    </ul>
+  </div>
+  <div class="es align">
+    <span class="esh">Alinhamento</span>
+    <span class="esn">6 desalinhamentos</span>
+    <ul>
+      <li>Prazos por trilha (7 e 14 dias) não existem na API — hoje tudo é 7</li>
+      <li>Fechamento depende de presença no treinamento + dado — API fecha só por dado</li>
+      <li>Lembretes D-2 ao dono e D-1 às aprovadoras são humanos (Isabella no olho)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="prog" id="prog">
+  <div class="ph">
+    <span class="pl">Progresso</span>
+    <span class="pv"><span id="done">0</span> / <span id="total">7</span></span>
+  </div>
+  <div class="track"><div class="fill" id="fill" style="width:0%"></div></div>
+  <div class="actions">
+    <button onclick="sendAllToClaude()" style="border-color:var(--brand);color:var(--brand-ink);background:var(--brand-soft)">✦ Enviar pendentes ao Claude</button>
+    <button onclick="resetAll()">Limpar tudo</button>
+    <button onclick="window.print()">Imprimir</button>
+  </div>
+</div>
+
+<div class="legend">
+  <span><i class="p1"></i>P1 · trava ciclo</span>
+  <span><i class="p2"></i>P2 · gera retrabalho</span>
+  <span><i class="p3"></i>P3 · nice-to-have</span>
+  <span style="margin-left:auto;display:inline-flex;gap:14px;flex-wrap:wrap">
+    <span><i style="background:var(--brand)"></i>origem <b>Ferramenta</b></span>
+    <span><i style="background:#7B2CBF"></i>origem <b>Processo</b></span>
+    <span><i style="background:var(--amber)"></i>origem <b>Alinhamento</b></span>
+  </span>
+</div>
+
+<section>
+  <div class="shead"><span class="sn">01</span><h2>Gaps para implementar</h2></div>
+  <p class="sub">Ordem de prioridade. Marque cada item conforme resolver — o progresso salva no navegador.</p>
+
+  <div class="gaps">
+
+    <div class="gp" data-id="1">
+      <div class="gh">
+        <span class="gnn">01</span>
+        <span class="gtxt">Prazos por trilha (7 e 14 dias) não existem na API</span>
+        <span class="prio p1">P1 · trava ciclo</span>
+        <span class="origin align">Alinhamento</span>
+      </div>
+      <div class="body">
+        <div class="row"><span class="rk">Referência no processo</span><span class="rv">§5.2 · Tabela de trilhas · Manutenção/Anúncios 7d · Notas e Ocorrências/Estrutura/Prédio 14d</span></div>
+        <div class="row"><span class="rk">Como é hoje</span><span class="rv dim"><code>protocolos.franquia.etapas.preuti.prazo = 7</code> — único prazo pra qualquer trilha. §9 do doc já reconhece: "a Central usa 7 dias para tudo"</span></div>
+        <div class="row"><span class="rk">Risco</span><span class="rv dim">Trilha Notas/Ocorrências vence antes do treinamento quinzenal da Rose acontecer. Franquia cai pra "Aguardando aprovação" sem culpa</span></div>
+        <div class="row"><span class="rk">Endpoint sugerido</span><span class="rv">Expor <code>plano_dominante</code> no caso + prazo calculado dinamicamente via <code>protocolos.franquia.planos[plano].prazo_preuti</code></span></div>
+      </div>
+      <div class="todo">
+        <span class="tl">Critério de aceite</span>
+        <div class="item"><input type="checkbox" id="i1a"><label for="i1a">Campo <code>plano_dominante</code> exposto no payload do caso ao mover Alerta → Pré-UTI</label></div>
+        <div class="item"><input type="checkbox" id="i1b"><label for="i1b">Prazo da etapa Pré-UTI é derivado: <b>7d</b> pra <code>manutencao|anuncios</code>, <b>14d</b> pra <code>ocorrencias|estrutura|predio</code></label></div>
+        <div class="item"><input type="checkbox" id="i1c"><label for="i1c">Data-limite calculada corretamente aparece no card e no e-mail D0 (<code>{data_limite}</code>)</label></div>
+        <div class="item"><input type="checkbox" id="i1d"><label for="i1d">Linha do tempo histórica da franquia marca "Pré-UTI 14d" ou "Pré-UTI 7d" por caso</label></div>
+      </div>
+      <div class="btns">
+        <button class="btn-claude" onclick="sendGapToClaude(this)">Enviar ao Claude</button>
+        <button class="btn-done" onclick="toggleDone(1)"></button>
+      </div>
+    </div>
+
+    <div class="gp" data-id="2">
+      <div class="gh">
+        <span class="gnn">02</span>
+        <span class="gtxt">Fechamento compound presença-no-treinamento + 14d sem ocorrência</span>
+        <span class="prio p1">P1 · trava ciclo</span>
+        <span class="origin align">Alinhamento</span>
+      </div>
+      <div class="body">
+        <div class="row"><span class="rk">Referência no processo</span><span class="rv">§5.4 · "Presença no treinamento confirmada pelo time de treinamento no card; nenhuma ocorrência nova na categoria durante a Pré-UTI"</span></div>
+        <div class="row"><span class="rk">Como é hoje</span><span class="rv dim"><code>planos.ocorrencias.pre.pronto</code> fecha só por dado (<i>"quando o diagnóstico de ocorrências some"</i>). Treinamento quinzenal da Rose não é passo da Pré-UTI</span></div>
+        <div class="row"><span class="rk">Risco</span><span class="rv dim">Franquia pode "passar" sem ter sido reciclada — recaída na mesma categoria em 30d fica fora de controle</span></div>
+        <div class="row"><span class="rk">Endpoint sugerido</span><span class="rv"><code>POST /api/preuti/{caso_id}/presenca-treinamento</code> + regra de fechamento <code>presenca_confirmada AND dias_sem_ocorrencia_nova &gt;= 14</code></span></div>
+      </div>
+      <div class="todo">
+        <span class="tl">Critério de aceite</span>
+        <div class="item"><input type="checkbox" id="i2a"><label for="i2a">Plano <code>ocorrencias</code> ganha passo "Participação no treinamento de reciclagem" na trilha Pré-UTI</label></div>
+        <div class="item"><input type="checkbox" id="i2b"><label for="i2b">Rose (perfil Treinamento) tem botão "Confirmar presença" no card com data + tema</label></div>
+        <div class="item"><input type="checkbox" id="i2c"><label for="i2c">Fechamento automático só acontece quando <b>presença confirmada</b> E <b>14d sem ocorrência nova na categoria</b></label></div>
+        <div class="item"><input type="checkbox" id="i2d"><label for="i2d">Flag <code>treinamento_pendente</code> impede fechar o card antes da data da próxima turma</label></div>
+      </div>
+      <div class="btns">
+        <button class="btn-claude" onclick="sendGapToClaude(this)">Enviar ao Claude</button>
+        <button class="btn-done" onclick="toggleDone(2)"></button>
+      </div>
+    </div>
+
+    <div class="gp" data-id="3">
+      <div class="gh">
+        <span class="gnn">03</span>
+        <span class="gtxt">Encaixe automático na próxima turma quinzenal da Rose</span>
+        <span class="prio p1">P1 · trava ciclo</span>
+        <span class="origin tool">Ferramenta</span>
+      </div>
+      <div class="body">
+        <div class="row"><span class="rk">Referência no processo</span><span class="rv">§5.4 · "Treinamento encaixa a franquia na reciclagem da quinzena (2ª e 4ª semanas do mês), por tema"</span></div>
+        <div class="row"><span class="rk">Como é hoje</span><span class="rv dim">Rose encaixa à mão em agenda externa. A Central não tem agenda de treinamento nem roster da turma</span></div>
+        <div class="row"><span class="rk">Risco</span><span class="rv dim">Franquia que entra em D+2 do mês espera 12 dias pela próxima turma — já estourou os 14 dias de Pré-UTI (depende do gap 01)</span></div>
+        <div class="row"><span class="rk">Endpoint sugerido</span><span class="rv"><code>GET /api/treinamento/turmas?tema=limpeza|checkin|danos|comunicacao</code> + <code>POST /api/preuti/{caso_id}/encaixar</code></span></div>
+      </div>
+      <div class="todo">
+        <span class="tl">Critério de aceite</span>
+        <div class="item"><input type="checkbox" id="i3a"><label for="i3a">Agenda configurável: tema + data da próxima turma (recorrência quinzenal padrão 2ª e 4ª semanas)</label></div>
+        <div class="item"><input type="checkbox" id="i3b"><label for="i3b">Ao entrar em Pré-UTI com plano <code>ocorrencias</code>, sistema sugere/encaixa no próximo slot do tema que mais pesou</label></div>
+        <div class="item"><input type="checkbox" id="i3c"><label for="i3c">Rose vê roster da turma com todas as franquias em Pré-UTI por tema (uma tela só)</label></div>
+        <div class="item"><input type="checkbox" id="i3d"><label for="i3d">Confirmar presença no roster fecha o passo G02 automaticamente nos cards relacionados</label></div>
+      </div>
+      <div class="btns">
+        <button class="btn-claude" onclick="sendGapToClaude(this)">Enviar ao Claude</button>
+        <button class="btn-done" onclick="toggleDone(3)"></button>
+      </div>
+    </div>
+
+    <div class="gp" data-id="4">
+      <div class="gh">
+        <span class="gnn">04</span>
+        <span class="gtxt">Lembrete D-2 ao dono da trilha e D-1 às aprovadoras</span>
+        <span class="prio p1">P1 · trava ciclo</span>
+        <span class="origin align">Alinhamento</span>
+      </div>
+      <div class="body">
+        <div class="row"><span class="rk">Referência no processo</span><span class="rv">§5.5 · "Lembrete ao dono da trilha 2 dias antes do vencimento. No dia anterior, aviso às aprovadoras na thread com o resumo"</span></div>
+        <div class="row"><span class="rk">Como é hoje</span><span class="rv dim">Isabella faz na mão: filtra o Kanban, vê quem vence hoje e amanhã, cutuca o dono e as aprovadoras. §7 do doc trata como atividade diária</span></div>
+        <div class="row"><span class="rk">Risco</span><span class="rv dim">Dependência de uma pessoa em dia útil. Se Isabella estiver fora ou com Pré-UTI de 20+ cards (hoje tem 13), aviso cai e a decisão vence sem aprovador</span></div>
+        <div class="row"><span class="rk">Endpoint sugerido</span><span class="rv">Cron diário 09:00 BRT bate em <code>casos?p_escopo=franquia&amp;fase=preuti</code>, calcula <code>vencimento - today</code> e dispara via Slack/e-mail</span></div>
+      </div>
+      <div class="todo">
+        <span class="tl">Critério de aceite</span>
+        <div class="item"><input type="checkbox" id="i4a"><label for="i4a">Cron diário 09:00 BRT varre todos os casos em <code>preuti</code> e calcula D até vencimento</label></div>
+        <div class="item"><input type="checkbox" id="i4b"><label for="i4b">D-2 → notifica dono da trilha (Vinicius · Victória · Larissa · Camila) no Slack + card</label></div>
+        <div class="item"><input type="checkbox" id="i4c"><label for="i4c">D-1 → notifica aprovadoras (Carolina, Vivianny, Iara, Rayanne) com <b>resumo: pedido · entregue · faltando · apoio dado</b></label></div>
+        <div class="item"><input type="checkbox" id="i4d"><label for="i4d">Log auditável do dispatch (quem recebeu, quando, canal) consultável via <code>eventos</code></label></div>
+      </div>
+      <div class="btns">
+        <button class="btn-claude" onclick="sendGapToClaude(this)">Enviar ao Claude</button>
+        <button class="btn-done" onclick="toggleDone(4)"></button>
+      </div>
+    </div>
+
+    <div class="gp" data-id="5">
+      <div class="gh">
+        <span class="gnn">05</span>
+        <span class="gtxt">Dispatch D0 aos donos de trilha (Vinicius · Victória · Rose)</span>
+        <span class="prio p1">P1 · trava ciclo</span>
+        <span class="origin align">Alinhamento</span>
+      </div>
+      <div class="body">
+        <div class="row"><span class="rk">Referência no processo</span><span class="rv">§5.2 · "e-mail D0 cópia Vivianny, Isabella, Rayanne e David" · §5.3-5.4 · "trilha avisada no card e no thread"</span></div>
+        <div class="row"><span class="rk">Como é hoje</span><span class="rv dim">API: CC D0 só tem <code>vivianny.aguilera</code> e <code>isabella.bino</code>. Vinicius, Victória, Rose, Rayanne e David recebem só se Isabella marcar no Slack. <b>Padrão 1 da auditoria: notificar operadores internos ativamente</b></span></div>
+        <div class="row"><span class="rk">Risco</span><span class="rv dim">Dono da trilha descobre que tem Pré-UTI "ao abrir o sistema". Hoje tem 13 em curso — risco cresce com o volume</span></div>
+        <div class="row"><span class="rk">Endpoint sugerido</span><span class="rv">Expandir <code>protocolos.franquia.email_envio.cc</code> + enviar notificação Slack ao dono do plano dominante + criar task no Taskdex</span></div>
+      </div>
+      <div class="todo">
+        <span class="tl">Critério de aceite</span>
+        <div class="item"><input type="checkbox" id="i5a"><label for="i5a">Dispatch D0 identifica dono da trilha pelo <code>plano_dominante</code> e envia Slack DM + card atribuído</label></div>
+        <div class="item"><input type="checkbox" id="i5b"><label for="i5b">Rayanne e David entram no CC do e-mail D0 (padronizar com o doc)</label></div>
+        <div class="item"><input type="checkbox" id="i5c"><label for="i5c">Mensagem padronizada: motivo + entrega esperada + prazo + link direto pro caso</label></div>
+        <div class="item"><input type="checkbox" id="i5d"><label for="i5d">Mesmo mecanismo cria task no board Taskdex do dono: "Pré-UTI · [Franquia] · vence [data]"</label></div>
+      </div>
+      <div class="btns">
+        <button class="btn-claude" onclick="sendGapToClaude(this)">Enviar ao Claude</button>
+        <button class="btn-done" onclick="toggleDone(5)"></button>
+      </div>
+    </div>
+
+    <div class="gp" data-id="6">
+      <div class="gh">
+        <span class="gnn">06</span>
+        <span class="gtxt">Dossiê exportável da Pré-UTI pra transição Distrato/UTI</span>
+        <span class="prio p1">P1 · trava ciclo</span>
+        <span class="origin align">Alinhamento</span>
+        <span class="origin proc">Processo</span>
+      </div>
+      <div class="body">
+        <div class="row"><span class="rk">Referência no processo</span><span class="rv">§5.6 · Decisão "distrato" é saída possível · §7 "Toda decisão registrada em até 2 dias"</span></div>
+        <div class="row"><span class="rk">Como é hoje</span><span class="rv dim">API tem <code>eventos</code> por caso, mas não há exportação consolidada. Distrato pode seguir sem trilha estruturada — <b>padrão 4 da auditoria: saída punitiva precisa de evidência</b></span></div>
+        <div class="row"><span class="rk">Risco</span><span class="rv dim">Contestação jurídica do franqueado distratado — sem dossiê, Seazone precisa reconstruir histórico de WhatsApp e Slack</span></div>
+        <div class="row"><span class="rk">Endpoint sugerido</span><span class="rv"><code>GET /api/preuti/{caso_id}/dossie?formato=json|pdf</code> consolidando eventos + e-mails + respostas + cobranças + decisões</span></div>
+      </div>
+      <div class="todo">
+        <span class="tl">Critério de aceite</span>
+        <div class="item"><input type="checkbox" id="i6a"><label for="i6a">Endpoint retorna histórico completo cronológico por caso (eventos, decisões, lembretes enviados)</label></div>
+        <div class="item"><input type="checkbox" id="i6b"><label for="i6b">PDF gerado tem cabeçalho padrão com franquia, datas, aprovadora que decidiu e assinatura digital</label></div>
+        <div class="item"><input type="checkbox" id="i6c"><label for="i6c">Geração automática na transição pra <code>distrato</code> — anexa ao caso e envia pra <code>juridico@seazone</code></label></div>
+        <div class="item"><input type="checkbox" id="i6d"><label for="i6d">Botão "Exportar dossiê" disponível em qualquer momento da Pré-UTI (não só no distrato)</label></div>
+      </div>
+      <div class="btns">
+        <button class="btn-claude" onclick="sendGapToClaude(this)">Enviar ao Claude</button>
+        <button class="btn-done" onclick="toggleDone(6)"></button>
+      </div>
+    </div>
+
+    <div class="gp" data-id="7">
+      <div class="gh">
+        <span class="gnn">07</span>
+        <span class="gtxt">Régua: sinais em tempo real → Score vira 2ª validação</span>
+        <span class="prio p2">P2 · retrabalho</span>
+        <span class="origin align">Alinhamento</span>
+      </div>
+      <div class="body">
+        <div class="row"><span class="rk">Referência no processo</span><span class="rv">§9 · "Sinais em tempo real (avaliações, volume de check-out, ocorrências, manutenções) em vez do Score como gatilho principal; Score vira segunda validação"</span></div>
+        <div class="row"><span class="rk">Como é hoje</span><span class="rv dim">Regras da Central: <i>"UTI de Franquias — régua: Score do ScorePulse, mensal"</i>. Score é mensal, então a Pré-UTI reage com atraso de até 30 dias ao real estado da franquia</span></div>
+        <div class="row"><span class="rk">Risco</span><span class="rv dim">Franquia piora em outubro mas só vira sinal no fechamento do mês. Até lá, mais imóveis críticos acumulam</span></div>
+        <div class="row"><span class="rk">Endpoint sugerido</span><span class="rv">Avaliar motor de sinais em tempo real alimentado por <code>diagnostico_franquias</code> + <code>imoveis_hoje</code> + Central de Ocorrências. Score fica como regra de validação cruzada</span></div>
+      </div>
+      <div class="todo">
+        <span class="tl">Critério de aceite</span>
+        <div class="item"><input type="checkbox" id="i7a"><label for="i7a">Novo gatilho primário: queda de 2+ pts na média de check-in/limpeza nos últimos 15d (janela deslizante)</label></div>
+        <div class="item"><input type="checkbox" id="i7b"><label for="i7b">Score mensal passa a ser 2ª validação (confirma ou descarta o gatilho tempo real na triagem automática)</label></div>
+        <div class="item"><input type="checkbox" id="i7c"><label for="i7c">Flag <code>origem_gatilho = tempo_real | score</code> no caso pra métricas de precisão</label></div>
+        <div class="item"><input type="checkbox" id="i7d"><label for="i7d">Rodada em paralelo por 30 dias (sombra) antes de virar régua oficial, pra calibrar false positives</label></div>
+      </div>
+      <div class="btns">
+        <button class="btn-claude" onclick="sendGapToClaude(this)">Enviar ao Claude</button>
+        <button class="btn-done" onclick="toggleDone(7)"></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="sn">02</span><h2>Contexto de referência</h2></div>
+  <p class="sub">Documentos que o dev precisa ao lado.</p>
+  <div class="note">
+    <span class="lbl">Fontes</span>
+    <p><b>Processo Pré-UTI de Franquias</b> · 21/10/2026 — autoria Isabella Bino (BackOffice Franquias), gestora Rayanne Oliveira, dona Carolina Espindola</p>
+    <p><b>Plataforma:</b> <code>https://central-uti-stg.seazone.properties/</code> — Kanban Franquias + ficha + aba Regras e fontes</p>
+    <p><b>API de leitura:</b> <code>https://rksgmplciyyslegcadvw.supabase.co/rest/v1/rpc/uti_leitura</code> — recursos usados nesta auditoria: <code>indice</code>, <code>protocolos</code>, <code>resumo</code>, <code>regras</code>, <code>casos&amp;p_escopo=franquia</code></p>
+    <p><b>Casos atuais (snapshot 21/10/2026):</b> 3 Alerta · <b>13 Pré-UTI</b> · 3 Aguardando aprovação · 4 em execução · 1 observação · 22 fora</p>
+    <p><b>Capacidade UTI:</b> 5 franquias simultâneas · <b>Dias plano UTI:</b> 30 · <b>Lista "nunca UTI":</b> Rodrigo Maruco (decisão Carolina)</p>
+  </div>
+  <div class="note warn">
+    <span class="lbl">Interfaces mapeadas no processo (sistemas-irmãos)</span>
+    <p>Sapron (Central de Manutenção · Vinicius Satores) · Central de Ocorrências e Multas · ScorePulse · Hub da Consultoria Regional · Stop de Crescimento · Agenda de reciclagem (Rose, externa) · Taskdex · Canal <code>#uti-franquias</code> no Slack · e-mail <code>anfitrioes@seazone.com.br</code></p>
+    <p>Cada um deles é candidato a extensão de navegador (ver seção 05).</p>
+  </div>
+  <div class="note stop">
+    <span class="lbl">Melhorias que o próprio processo já reconhece (§9)</span>
+    <p>Prazo da Pré-UTI por trilha (7 e 14 dias) e entrega de reciclagem confirmada por pessoa — <b>vira gap 01 e 02</b>.</p>
+    <p>Gatilho de manutenção por volume de cards travados (20-25), com alinhamento do Vinicius na Pré-UTI — regra já existe na API (<code>Alerta de manutenção: 20+ cards e 2× média</code>) · <b>falta o passo de alinhamento com Vinicius na Pré-UTI, que é o gap 05</b>.</p>
+    <p>Sinais em tempo real em vez do Score como gatilho principal — <b>vira gap 07</b>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="sn">03</span><h2>Backlog adicional · análise 21/10</h2></div>
+  <p class="sub">Achados complementares aos 7 gaps da seção 01. Aqui não há critério de aceite ainda — cada item tem botão <b>✦ Enviar ao Claude</b> que abre uma conversa pra transformar o achado em desenho técnico (Ferramenta), rascunho de decisão (Processo) ou análise conjunta (Alinhamento).</p>
+
+  <div class="bkgroup">
+    <div class="bkhd"><span class="bkdot tool"></span>Ferramenta · pra avaliar com o David</div>
+    <p class="bksub">Gaps intrínsecos da Central que não travam o ciclo agora, mas aparecem no uso diário com 13 Pré-UTIs em curso.</p>
+    <div class="bklog">
+
+      <div class="bk tool">
+        <div class="bkh"><span class="bkn">S1</span><span class="bkt">Métricas de cabeceira nativas (% sem UTI, decisões no prazo, retorno em 30d)</span></div>
+        <p class="bkd">§8 lista os indicadores do processo: <i>"% de Pré-UTIs encerradas sem UTI; % de decisões no prazo; franquias que voltaram em 30 dias"</i>. Hoje a Central tem contagem por etapa (<code>resumo</code>), mas não essas 3 taxas. <b>Sugestão:</b> endpoint <code>GET /api/preuti/kpis?periodo=30d|90d</code> + widget no topo do Kanban Franquias.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk tool">
+        <div class="bkh"><span class="bkn">S2</span><span class="bkt">Histórico de Pré-UTIs por franquia (quantas em 12m)</span></div>
+        <p class="bkd">Linha do tempo já existe nas regras ("13 meses com intervenções marcadas"), mas não há contador de reincidência exposto. <b>Sugestão:</b> campo <code>preuti_count_12m</code> no caso + badge "3ª Pré-UTI em 12m" no card pra sinalizar reincidência crônica.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk tool">
+        <div class="bkh"><span class="bkn">S3</span><span class="bkt">Filtro "quem vence hoje/amanhã" como view nativa</span></div>
+        <p class="bkd">§5.5 pede: <i>"filtro de Pré-UTI no Kanban; quem vence hoje e amanhã; o que falta"</i>. Hoje Isabella monta à mão. <b>Sugestão:</b> view/preset "Vence em 48h" com filtro aplicado + ordenação por urgência.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk tool">
+        <div class="bkh"><span class="bkn">S4</span><span class="bkt">Painel por consultor regional (Clara · Thiago · Hércules/Raphael)</span></div>
+        <p class="bkd">Regras citam roteamento Nordeste → Clara, Centro-Oeste/Sudeste → Thiago, Sul → Hércules/Raphael. Pré-UTIs ainda não aparecem agrupadas por consultor regional pra planejar visitas em bloco. <b>Sugestão:</b> filtro <code>?consultor_uf=X</code> + relatório semanal auto.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk tool">
+        <div class="bkh"><span class="bkn">S5</span><span class="bkt">Trilha "Anúncios" na Pré-UTI (hoje agrupada em preuti genérica)</span></div>
+        <p class="bkd">§5.2 lista 4 trilhas (Manutenção, Notas/Ocorrências, Anúncios, Estrutura/Prédio). API tem planos de UTI pra todas, mas na Pré-UTI o <code>plano_dominante</code> ainda não existe (ver gap 01). <b>Sugestão complementar:</b> cada trilha ganha coluna própria no Kanban Franquias ou label visual pra Isabella saber em 1 clique quantas Pré-UTIs são de Anúncios.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk tool">
+        <div class="bkh"><span class="bkn">S6</span><span class="bkt">Botão "Confirmar presença no treinamento" visível pra Rose</span></div>
+        <p class="bkd">Complemento do gap 02. Além da regra de fechamento, Rose precisa de uma visão só dela: todas as franquias da próxima turma, botão de check-in rápido, histórico de treinamentos por franquia. Sem UX dedicada, a presença continua sendo registrada no Slack e perdida.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk tool">
+        <div class="bkh"><span class="bkn">S7</span><span class="bkt">Relatório de entrada da franquia gerado pelo sistema</span></div>
+        <p class="bkd">§6 cita <i>"Relatório de entrada da franquia (gerado pela Isabella): gatilho, diagnóstico, cards abertos, ocorrências com motivo, imóveis críticos"</i>. Esse relatório hoje é compilado à mão. API tem todos os dados (<code>diagnostico_franquias</code>, <code>casos</code>, <code>imoveis_hoje</code>). <b>Sugestão:</b> gerar PDF automático no D0, anexar no caso e enviar no thread.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bkgroup">
+    <div class="bkhd"><span class="bkdot proc"></span>Processo · pra próxima retro (não é do dev)</div>
+    <p class="bksub">Compartilhado com o David só como contexto — enquanto essas decisões não fecharem, alguns gaps da seção 01 ficam parciais.</p>
+    <div class="bklog">
+
+      <div class="bk proc">
+        <div class="bkh"><span class="bkn">P1</span><span class="bkt">SLA de resposta do gestor da franquia após D+14</span></div>
+        <p class="bkd">Processo cita que BackOffice aciona o gestor na trilha Notas/Ocorrências se faltar engajamento, mas <b>não define</b> quantos dias o gestor tem pra responder. Sem SLA, cobrança vira negociação. <b>Padrão da auditoria:</b> ambiguidade com saída jurídica/punitiva (distrato) exige SLA.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk proc">
+        <div class="bkh"><span class="bkn">P2</span><span class="bkt">Papel do consultor da UF na Pré-UTI (ambíguo)</span></div>
+        <p class="bkd">§4 lista <i>"consultor da UF — aciona visita se necessário"</i>. Mas o que ele faz nos outros casos? Quando ele é chamado proativamente? Quem decide a visita? Sem padrão, o consultor regional vira "último a saber".</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk proc">
+        <div class="bkh"><span class="bkn">P3</span><span class="bkt">Critério formal pra "caso grave" que pula a Pré-UTI</span></div>
+        <p class="bkd">§5.1 diz: <i>"Exceção: caso grave ou recaída em menos de 30 dias vai direto para Aguardando aprovação"</i>. "Recaída em 30 dias" é verificável. "Caso grave" ainda não. <b>Retro decide:</b> 2+ gravíssimas em 30d? Stop total por qualidade? Score Ruim + 40% carteira crítica?</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk proc">
+        <div class="bkh"><span class="bkn">P4</span><span class="bkt">Prazo proporcional pra franquia pequena (&lt;5 imóveis)</span></div>
+        <p class="bkd">Franquia de 2 imóveis com 7 ou 14 dias pra reagir é diferente de uma de 40. <b>Retro decide:</b> cadência única sem trilha dupla? Prazo rounded-up (sempre 14)? Ou o processo é desenhado só pra franquia com portfólio ≥ 5?</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk proc">
+        <div class="bkh"><span class="bkn">P5</span><span class="bkt">Critério "Seazone não entregou a estrutura" (ex.: treinamento não ofertado)</span></div>
+        <p class="bkd">§4 diz: <i>"Rayanne e David decidem os casos em que a Seazone não deu estrutura para a entrega"</i>. Precisa definir: o que conta como "não entregou"? Treinamento cancelado pela Rose? Call de alinhamento não feita pelo Vinicius? Lista fechada evita decisão caso a caso.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk proc">
+        <div class="bkh"><span class="bkn">P6</span><span class="bkt">KPI de cabeceira formal (meta de %)</span></div>
+        <p class="bkd">§8 lista indicadores mas não a meta. <b>Qual é o número bom?</b> 60% de Pré-UTIs sem UTI? 80%? Sem meta, "está indo bem" é opinião. Sugestão: fixar meta na próxima retro e ligar no hub de KPIs (<code>kpi-system</code>).</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk proc">
+        <div class="bkh"><span class="bkn">P7</span><span class="bkt">Reunião semanal de UTI — critério de encerramento</span></div>
+        <p class="bkd">§7 fala <i>"toda semana, enquanto o processo estabiliza"</i>. "Estabiliza" é subjetivo. <b>Retro decide:</b> 4 semanas consecutivas sem distrato? Volume médio de Pré-UTI &lt; X por mês? Define o fim pra não virar reunião eterna.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk proc">
+        <div class="bkh"><span class="bkn">P8</span><span class="bkt">Lista "só alerta" / "nunca UTI" — critério de entrada e revisão</span></div>
+        <p class="bkd">API já expõe <code>nunca_uti</code> (hoje só Rodrigo Maruco) + franquias "só alerta" que ficam em Alerta sem ir pra Pré-UTI. §5.1 cita a existência mas não documenta o critério. <b>Retro decide:</b> quem entra, por quanto tempo, quem revisa a cada N meses, o que vence a proteção.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bkgroup">
+    <div class="bkhd"><span class="bkdot align"></span>Alinhamento · pra discutir com David e Isabella juntos</div>
+    <p class="bksub">Precisa decisão humana + ajuste técnico simultâneo. Nem é só código, nem é só retro.</p>
+    <div class="bklog">
+
+      <div class="bk align">
+        <div class="bkh"><span class="bkn">A1</span><span class="bkt">CC do e-mail D0 — doc inclui Rayanne/David, API não</span></div>
+        <p class="bkd">Doc §5.2: cópia Vivianny, Isabella, <b>Rayanne e David</b>. API <code>protocolos.franquia.email_envio.cc</code>: só Vivianny e Isabella. Decisão: adicionar os 2 no CC (gestão BackOffice vê tudo) ou criar canal separado de supervisão? Afeta volume de e-mails em dias com múltiplas Pré-UTIs.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk align">
+        <div class="bkh"><span class="bkn">A2</span><span class="bkt">Modelo operacional por trilha — Manutenção tem, Qualidade+Treinamento falta</span></div>
+        <p class="bkd"><b>Padrão 3 da auditoria.</b> Vinicius (Manutenção) tem padrão claro: listar cards, priorizar, combinar ritmo, acompanhar Sapron, foto final. Victória+Rose (Notas/Ocorrências) ainda não têm o mesmo nível: como Rose confirma presença exatamente? Victória prepara o quê antes da reciclagem? Larissa (Anúncios) e Camila (Estrutura/Prédio) idem. Precisa desenhar antes de automatizar.</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk align">
+        <div class="bkh"><span class="bkn">A3</span><span class="bkt">Reciclagem como passo do plano <code>ocorrencias</code> na API</span></div>
+        <p class="bkd">Hoje <code>planos.ocorrencias.passos[]</code> da API fala em "Padrão exigido · Plano de correção · Conferência presencial" — tudo sobre o imóvel. O doc novo adiciona <b>Treinamento com a Rose</b> como passo central da trilha. Precisa desenhar como esse passo coexiste com os passos atuais (ordem? paralelo? primeiro?).</p>
+        <button class="btn-claude" onclick="sendBacklogToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="sn">04</span><h2>Já está pronto</h2></div>
+  <p class="sub">O que a Central da UTI já implementa e o doc da Isabella (21/10) não cita como pronto. <b>Serve pra evitar refazer</b> e pra Isabella atualizar o doc numa próxima revisão.</p>
+  <div class="doneblk">
+    <div class="dh">13 itens verificados na API em 21/10/2026</div>
+    <ul>
+      <li>Etapas <b>Alerta → Pré-UTI → Aguardando aprovação → UTI</b> implementadas (<code>protocolos.franquia.etapas</code>)</li>
+      <li>E-mail D0 <b>"Sua franquia entrou na Pré-UTI"</b> com template completo, assunto e CC Vivianny+Isabella (<code>emails.preuti</code>)</li>
+      <li>E-mail D7 <b>"Pré-UTI estendida"</b> com ciclo único de extensão (<code>emails.preuti_extensao</code>)</li>
+      <li>Decisões no card: <b>entra na UTI · mais 7 dias · observar 30d · distrato</b> (<code>etapas.decisao.decisoes</code>)</li>
+      <li>Prazo de decisão: <b>2 dias</b> (<code>etapas.decisao.prazo</code>)</li>
+      <li>Observação de <b>30 dias</b> pós-saída, com volta direta pra aprovação se houver recaída (<code>etapas.observacao</code>)</li>
+      <li>Lista "nunca UTI" ativa (hoje <b>Rodrigo Maruco</b> por decisão da Carolina em 15/10/2026)</li>
+      <li>Capacidade UTI limitada a <b>5 franquias</b> simultâneas (<code>capacidade.franquia</code>)</li>
+      <li><b>Triagem automática</b> ativa (<code>triagem_automatica: true</code>)</li>
+      <li>Planos <code>manutencao</code>, <code>ocorrencias</code>, <code>avaliacoes</code>, <code>anuncios</code>, <code>estrutura</code>, <code>predio</code> com passos detalhados por dono e prazos</li>
+      <li>Alerta de manutenção já implementado: <b>20+ cards no Sapron e 2× a média da rede</b> (regra confere com §5.1 do doc)</li>
+      <li>Linha do tempo histórica da franquia com <b>13 meses de intervenções marcadas</b> (Pré-UTI, UTI, recuperada, distrato, visitas)</li>
+      <li>Lista "só alerta" diferenciada da "nunca UTI": fica em Alerta pra acompanhamento, só sobe se pessoa mover o card</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="sn">05</span><h2>Melhorias · Automação, Agentes, Extensão</h2></div>
+  <p class="sub">Roadmap de evolução pra depois dos gaps da seção 01. Cada item tem botão <b>✦ Enviar ao Claude</b> que abre uma conversa pedindo viabilidade técnica, desenho da solução e rascunho de critério de aceite pra entrar no check-list formal.</p>
+
+  <div class="bkgroup">
+    <div class="bkhd"><span class="bkdot autom"></span>Automação · cron/trigger</div>
+    <p class="bksub">Onde está manual e tem padrão repetitivo. Economia direta de tempo da Isabella.</p>
+    <div class="bklog">
+
+      <div class="bk autom">
+        <div class="bkh"><span class="bkn">AT1</span><span class="bkt">Encaixe automático em treinamento quinzenal</span></div>
+        <p class="bkd">Rose encaixa à mão. Automatizar quando o plano dominante é <code>ocorrencias</code>: ao entrar em Pré-UTI, sistema olha agenda, encontra próximo slot do tema + envia confirmação pra franquia e pra Rose. Também cobre S6 (UX da Rose). <b>Depende de:</b> gap 03.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk autom">
+        <div class="bkh"><span class="bkn">AT2</span><span class="bkt">Fechamento compound presença + 14d sem ocorrência</span></div>
+        <p class="bkd">Depois do gap 02, automatizar a regra: a cada noite, pra cada Pré-UTI com plano <code>ocorrencias</code>, bater (presença confirmada?) AND (0 ocorrências novas na categoria em 14d?). Se sim, fechar e encaixar em observação. <b>Depende de:</b> gaps 02 e 03.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk autom">
+        <div class="bkh"><span class="bkn">AT3</span><span class="bkt">Dispatch D-2/D-1 (já é o gap 04)</span></div>
+        <p class="bkd">Mesmo cron do gap 04, mas ampliando: além do Slack, criar lembrete no Google Agenda do dono da trilha e no board Taskdex pessoal. Tira a dependência de alguém olhar o Slack naquele minuto.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk autom">
+        <div class="bkh"><span class="bkn">AT4</span><span class="bkt">Task automática no Taskdex do dono quando entra na trilha</span></div>
+        <p class="bkd">Ao entrar franquia na Pré-UTI, criar task atribuída ao dono do plano dominante no board dele, com prazo = data-limite e link pro caso. <b>Impacto:</b> dono pode trabalhar com o fluxo normal do board, não precisa aprender a usar a Central só pra Pré-UTI.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk autom">
+        <div class="bkh"><span class="bkn">AT5</span><span class="bkt">Resumo semanal no #uti-franquias</span></div>
+        <p class="bkd">Toda segunda 09:00: bot RayAi (<code>hermes</code>) posta no canal <code>#uti-franquias</code>: X Pré-UTIs em curso, Y vencem na semana, Z no AgAprovação, decisões pendentes. Encaixa com os heartbeats que a Ray já roda.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk autom">
+        <div class="bkh"><span class="bkn">AT6</span><span class="bkt">Trigger de recaída (nova ocorrência mesma categoria em 30d)</span></div>
+        <p class="bkd">§5.7 do doc já define a regra ("alerta de volta = Aguardando aprovação direto, sem nova Pré-UTI"). Confirmar que o robô faz isso automaticamente, não via Isabella. Se não, implementar listener na Central de Ocorrências.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk autom">
+        <div class="bkh"><span class="bkn">AT7</span><span class="bkt">Agendamento automático da call D1 da trilha Manutenção</span></div>
+        <p class="bkd">§5.3 pede: <i>"D1 · Manutenção faz call de alinhamento"</i>. Hoje agendamento é humano. Cron que, ao detectar Pré-UTI com plano <code>manutencao</code>, cria evento no Google Agenda do Vinicius + franqueado + Isabella, com link do caso no corpo.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bkgroup">
+    <div class="bkhd"><span class="bkdot agente"></span>Agentes · IA aplicada</div>
+    <p class="bksub">Onde volume + necessidade de qualidade justificam LLM.</p>
+    <div class="bklog">
+
+      <div class="bk agente">
+        <div class="bkh"><span class="bkn">AG1</span><span class="bkt">Resumo pré-aprovação em 2 minutos</span></div>
+        <p class="bkd">Aprovadoras (Carolina, Vivianny, Iara, Rayanne) decidem em até 2 dias. Hoje precisam ler o thread todo. Agente gera resumo padronizado: <b>pedido · entregue · faltando · apoio dado · risco se não entra na UTI · histórico recente</b>. Posta no card e na DM da aprovadora no dia da decisão.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk agente">
+        <div class="bkh"><span class="bkn">AG2</span><span class="bkt">Narrativa executiva do dossiê de distrato</span></div>
+        <p class="bkd">Complemento do gap 06. PDF do dossiê tem a trilha estruturada. Agente escreve a <b>narrativa de 3-5 parágrafos</b> pra abrir o dossiê: contexto, o que foi pedido, o que foi entregue, o que não foi, por que distrato é a decisão. Jurídico abre e já entende sem ter que decodificar JSON de eventos.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk agente">
+        <div class="bkh"><span class="bkn">AG3</span><span class="bkt">Triagem de resposta da franquia por e-mail</span></div>
+        <p class="bkd">E-mail D0 responde pra <code>vivianny.aguilera</code>. Agente lê respostas automaticamente, classifica (confirma recebimento, pede prazo, pede ajuda, contesta), sugere resposta, cria evento no caso. Reduz tempo de resposta da Vivianny e garante que nenhuma resposta vire "e-mail perdido".</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk agente">
+        <div class="bkh"><span class="bkn">AG4</span><span class="bkt">Predição "franquias próximas de Pré-UTI" 7 dias antes</span></div>
+        <p class="bkd">Robô roda às 11h e bate gatilhos binários (passou/não passou). Agente roda em paralelo, estima <b>7 dias antes</b> quais franquias vão disparar sinal (tendência de nota, acumulação de manutenções, ocorrências em alta). Carol tem 1 semana pra conversar antes do carimbo "Pré-UTI".</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk agente">
+        <div class="bkh"><span class="bkn">AG5</span><span class="bkt">Meta-análise mensal de padrões (input pra retro)</span></div>
+        <p class="bkd">Último dia do mês, agente consolida: <b>quais sinais mais puxaram Pré-UTI, por categoria, por UF, por tamanho de franquia</b>. Entrega no formato de pautas pra retro semanal. Fecha o loop entre dados do robô e decisão humana.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk agente">
+        <div class="bkh"><span class="bkn">AG6</span><span class="bkt">Resumo da thread #uti-franquias ao abrir caso</span></div>
+        <p class="bkd">Isabella hoje precisa rolar thread do Slack pra ver o combinado. Agente lê thread, resume os últimos 7 dias e injeta no card da Central. Elimina "preciso lembrar o que ficou do dia 15".</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk agente">
+        <div class="bkh"><span class="bkn">AG7</span><span class="bkt">Comparador de recaída: franquia que voltou em 30d</span></div>
+        <p class="bkd">Franquia saiu da Pré-UTI, volta na mesma categoria em 30d. Agente compara: o que ela fez agora vs. o que fez na 1ª vez? Padrões que repetem = padrão de operação. Serve pra decidir distrato com base em evidência comportamental, não só em números.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bkgroup">
+    <div class="bkhd"><span class="bkdot extens"></span>Extensão de navegador · overlay nos sistemas-irmãos</div>
+    <p class="bksub">Levar o contexto da Pré-UTI aonde o time já trabalha. Padrão que a Plataforma Governança Franquias já usa — "preciso abrir mais um sistema" = zero.</p>
+    <div class="bklog">
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX1</span><span class="bkt">Sapron (Central de Manutenção) · badge na franquia</span></div>
+        <p class="bkd">Vinicius abre o Sapron, filtra franquia, extensão mostra <b>"Pré-UTI · D+3 de 7 · trilha Manutenção · 12 cards pra fechar"</b>. Atalho pra abrir caso na Central. Ele trabalha no fluxo que já conhece.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX2</span><span class="bkt">ScorePulse · badge</span></div>
+        <p class="bkd">Ao abrir qualquer franquia no ScorePulse, badge "<b>Pré-UTI por queda de Score · D+N</b>". Quem monitora Score vê imediatamente que já tá no Kanban.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX3</span><span class="bkt">Central de Ocorrências e Multas · badge</span></div>
+        <p class="bkd">Victória abre uma ocorrência, extensão sinaliza: "<b>Franquia em Pré-UTI por 2 gravíssimas · trilha Notas/Ocorrências · 14d</b>". Linka direto pro caso. Evita retrabalho.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX4</span><span class="bkt">Hub da Consultoria Regional · badge</span></div>
+        <p class="bkd">Clara/Thiago/Hércules abrem o Hub, veem franquias da região em Pré-UTI com badge "<b>Visita necessária?</b>" + atalho pro caso. Decisão de visita vira 1 clique.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX5</span><span class="bkt">Stop de Crescimento · badge</span></div>
+        <p class="bkd">Ao decidir UTI, Stop é ativado. Extensão no Stop mostra todas as franquias "Pré-UTI · decisão pendente" + "Pré-UTI · se virar UTI, Stop automático". Diretoria tem retrato antecipado.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX6</span><span class="bkt">Gmail · destaque de e-mails da franquia em Pré-UTI</span></div>
+        <p class="bkd">Vivianny tem resposta de franquia caindo em <code>anfitrioes@</code>. Extensão destaca em vermelho e-mails de franquia em Pré-UTI, mostra prazo e caso. Reduz tempo de atenção dirigida.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX7</span><span class="bkt">Slack #uti-franquias · resumo da franquia ao abrir thread</span></div>
+        <p class="bkd">Thread por franquia já existe. Extensão injeta card lateral com <b>status atual, prazo, pedido, entregue, faltando</b>. Quem entra no thread hoje precisa rolar; com a extensão, retrato na primeira olhada.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX8</span><span class="bkt">Taskdex · board das tasks de Pré-UTI por dono</span></div>
+        <p class="bkd">Depende de S4/AT4 estarem feitos. Extensão organiza as tasks de Pré-UTI do dono num filtro padrão. Vinicius/Victória/Larissa/Camila trabalham no board deles com a Pré-UTI visível.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+      <div class="bk extens">
+        <div class="bkh"><span class="bkn">EX9</span><span class="bkt">Google Agenda da Rose · franquias por slot de treinamento</span></div>
+        <p class="bkd">Rose abre o evento da reciclagem no Agenda, extensão lista as franquias encaixadas, tema, status (confirmada/sem resposta). Elimina check manual na véspera.</p>
+        <button class="btn-claude" onclick="sendMelhoriaToClaude(this)">✦ Enviar ao Claude</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<p class="foot">v1.0 · 21/10/2026 · <b>Ray</b> (BackOffice Franquias) · complemento técnico ao processo <b>Pré-UTI de Franquias</b> da <b>Isabella Bino</b> (21/10/2026). Dev responsável: <b>David Soares</b>. Bate-pronta rodada contra <code>uti_leitura</code> em 21/10/2026 — 13 itens confirmados como já prontos na seção 04.</p>
+
+</div>
+
+<script>
+const KEY='preuti_check_v1';
+const state=JSON.parse(localStorage.getItem(KEY)||'{}');
+
+function save(){localStorage.setItem(KEY,JSON.stringify(state));updateProg();}
+function updateProg(){
+  const gaps=document.querySelectorAll('.gp');
+  const doneCount=[...gaps].filter(g=>g.dataset.done==='1').length;
+  document.getElementById('done').textContent=doneCount;
+  document.getElementById('total').textContent=gaps.length;
+  document.getElementById('fill').style.width=(doneCount/gaps.length*100)+'%';
+}
+function toggleDone(id){
+  const el=document.querySelector('.gp[data-id="'+id+'"]');
+  const on=el.dataset.done!=='1';
+  el.dataset.done=on?'1':'0';
+  state['g'+id]=on;
+  save();
+}
+function resetAll(){
+  if(!confirm('Limpar todos os checks?'))return;
+  localStorage.removeItem(KEY);
+  document.querySelectorAll('.gp').forEach(el=>el.dataset.done='0');
+  document.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=false);
+  updateProg();
+}
+
+const CLAUDE_URL='https://claude.ai/new?q=';
+const REPO_URL='https://github.com/raayeoliveira/check-pre-uti-franquias';
+const API_URL='https://rksgmplciyyslegcadvw.supabase.co/rest/v1/rpc/uti_leitura';
+const PROC='Pré-UTI de Franquias (21/10/2026, Isabella Bino)';
+
+function buildGapPrompt(el){
+  const id=el.dataset.id;
+  const title=el.querySelector('.gtxt').textContent.trim();
+  const prio=el.querySelector('.prio')?.textContent.trim()||'';
+  const origins=[...el.querySelectorAll('.origin')].map(o=>o.textContent.trim());
+  const originStr=origins.join(' + ');
+  const rows=[...el.querySelectorAll('.body .row')].map(r=>{
+    const k=r.querySelector('.rk').textContent.trim();
+    const v=r.querySelector('.rv').textContent.trim();
+    return `- **${k}:** ${v}`;
+  }).join('\n');
+  const criterios=[...el.querySelectorAll('.todo .item label')].map(l=>`- [ ] ${l.textContent.trim()}`).join('\n');
+
+  const isTool=origins.includes('Ferramenta');
+  const isProc=origins.includes('Processo');
+  const isAlign=origins.includes('Alinhamento');
+
+  let intro;
+  if(isAlign || (isTool && isProc)){
+    intro=`Você é dev da Central da UTI (Supabase/PostgREST · RPC uti_leitura) e precisa resolver um gap de ALINHAMENTO entre a Central e o processo ${PROC}. O card abaixo descreve o que o processo prescreve, o que a Central faz hoje e o gap entre os dois.`;
+  } else if(isTool){
+    intro=`Você é dev da Central da UTI (Supabase/PostgREST · RPC uti_leitura). Preciso implementar o gap abaixo — é um gap intrínseco da Central, independente do processo.`;
+  } else {
+    intro=`Você é analista de processos da Seazone (BackOffice Franquias). Este gap é uma decisão de PROCESSO — não de código — do processo ${PROC}.`;
+  }
+
+  return `${intro}
+
+## Gap ${id} · ${title}
+**Prioridade:** ${prio}
+**Origem:** ${originStr}
+
+### Contexto
+${rows}
+
+### Critério de aceite
+${criterios}
+
+### Referências
+- Check-list completo: ${REPO_URL}
+- Processo: ${PROC}
+- Plataforma: https://central-uti-stg.seazone.properties/
+- API de leitura: ${API_URL}
+
+### Peço:
+1. Proponha o desenho da mudança (tabelas, RPC, views, triggers do Supabase) e cite os arquivos-alvo prováveis.
+2. Liste riscos, impactos em recursos existentes (casos, protocolos, planos, eventos) e o que precisa de decisão da Isabella/Rayanne antes de codar.
+3. Escreva o código pronto pra PR, com testes cobrindo cada critério de aceite acima.`;
+}
+
+function sendGapToClaude(btn){
+  const el=btn.closest('.gp');
+  const prompt=buildGapPrompt(el);
+  window.open(CLAUDE_URL+encodeURIComponent(prompt),'_blank','noopener');
+}
+
+function sendBacklogToClaude(btn){
+  const el=btn.closest('.bk');
+  const kind=el.classList.contains('tool')?'tool':el.classList.contains('proc')?'proc':'align';
+  const id=el.querySelector('.bkn').textContent.trim();
+  const title=el.querySelector('.bkt').textContent.trim();
+  const desc=el.querySelector('.bkd').textContent.trim();
+
+  let prompt;
+  if(kind==='tool'){
+    prompt=`Você é dev da Central da UTI (Supabase/PostgREST · RPC uti_leitura). Este item vem do backlog complementar do check-list oficial da ${PROC} (Ray · BackOffice Franquias) — ainda não tem critério de aceite fechado, precisa passar por um desenho técnico antes.
+
+## Backlog ${id} · ${title}
+**Origem:** Ferramenta (Central não implementa hoje)
+
+### Achado
+${desc}
+
+### Referências
+- Check-list completo: ${REPO_URL}
+- Processo: ${PROC}
+- API: ${API_URL}
+
+### Peço:
+1. Proponha o desenho técnico (tabelas, RPC, views, triggers, jobs).
+2. Levante riscos, impactos em recursos existentes e o que precisa de decisão da Isabella/Rayanne antes de codar.
+3. Escreva um rascunho de critério de aceite (3-5 itens verificáveis) para eu adicionar de volta no check-list.
+4. Só depois, se fizer sentido, comece o código.`;
+  } else if(kind==='proc'){
+    prompt=`Você é analista de processos da Seazone (BackOffice Franquias). Este item vem do backlog do check-list oficial da ${PROC} e é uma decisão de PROCESSO — não de código. Vai para a próxima retro semanal da UTI.
+
+## Decisão ${id} · ${title}
+**Origem:** Processo (regra em aberto no doc de 21/10/2026)
+
+### Achado
+${desc}
+
+### Referências
+- Check-list completo: ${REPO_URL}
+- Processo: ${PROC}
+- Time da retro: Rayanne, Vivianny, Isabella, David, Camila
+
+### Peço um rascunho pra levar à retro:
+1. Pergunta central que a retro precisa responder (uma frase).
+2. Opções (2 ou 3), com prós/contras curtos e impacto em quem executa.
+3. Recomendação sua, com a justificativa em uma linha.
+4. Dependências: outras decisões, dados ou levantamentos que precisam vir antes.
+5. Se a decisão exigir mudança na Central depois, indique o gap técnico que seria criado.`;
+  } else {
+    prompt=`Este item vem do backlog do check-list oficial da ${PROC} e exige análise CONJUNTA de processo e ferramenta (Ray · BackOffice Franquias). Não é só código, não é só retro.
+
+## Alinhamento ${id} · ${title}
+**Origem:** Alinhamento (processo prescreve X, Central faz Y)
+
+### Achado
+${desc}
+
+### Referências
+- Check-list completo: ${REPO_URL}
+- Processo: ${PROC}
+- API: ${API_URL}
+
+### Peço:
+1. Mapeie exatamente o que o processo prescreve e o que a Central faz hoje (contraste em 2 colunas).
+2. Diga quem precisa mudar primeiro — processo ou ferramenta — pra desbloquear o outro.
+3. Rascunhe a conversa entre Isabella (dona do processo) e David (dev): perguntas-chave, decisões a fechar antes de qualquer código, dependências.
+4. Se a decisão for mudar a Central, rascunhe o critério de aceite (3-5 itens verificáveis).`;
+  }
+  window.open(CLAUDE_URL+encodeURIComponent(prompt),'_blank','noopener');
+}
+
+function sendMelhoriaToClaude(btn){
+  const el=btn.closest('.bk');
+  const kind=el.classList.contains('autom')?'Automação':el.classList.contains('agente')?'Agente':'Extensão de navegador';
+  const id=el.querySelector('.bkn').textContent.trim();
+  const title=el.querySelector('.bkt').textContent.trim();
+  const desc=el.querySelector('.bkd').textContent.trim();
+
+  const prompt=`Você vai avaliar uma melhoria da seção 05 do check-list da ${PROC} (Ray · BackOffice Franquias) — categoria: ${kind}. Não é bug nem gap obrigatório: é uma sugestão de evolução pra decidir se vira gap formal.
+
+## Melhoria ${id} · ${title}
+**Categoria:** ${kind}
+
+### Descrição
+${desc}
+
+### Referências
+- Check-list completo: ${REPO_URL}
+- Processo: ${PROC}
+- API: ${API_URL}
+
+### Peço:
+1. **Viabilidade técnica:** quais dados, eventos, APIs ou integrações isso exige? Depende de outra melhoria/gap?
+2. **Desenho da solução:** cron? trigger? agente LLM com qual prompt? extensão em qual navegador/sistema? Qual a stack?
+3. **Impacto:** quem economiza tempo (nominal), qual métrica melhora, qual risco mitiga, qual escala atendida.
+4. **Pré-requisitos e dependências:** gaps da seção 01 que precisam estar prontos antes · decisões do processo que precisam ser fechadas.
+5. **Rascunho de critério de aceite (3-5 itens verificáveis)** pra promover de "sugestão" pra "gap formal" no check-list.`;
+  window.open(CLAUDE_URL+encodeURIComponent(prompt),'_blank','noopener');
+}
+
+function sendAllToClaude(){
+  const pendentes=[...document.querySelectorAll('.gp')].filter(g=>g.dataset.done!=='1');
+  if(!pendentes.length){alert('Não há gaps pendentes. Todos resolvidos.');return;}
+  const porOrigem={Ferramenta:[],Processo:[],Alinhamento:[]};
+  pendentes.forEach(el=>{
+    const id=el.dataset.id;
+    const title=el.querySelector('.gtxt').textContent.trim();
+    const prio=el.querySelector('.prio')?.textContent.trim()||'';
+    const origins=[...el.querySelectorAll('.origin')].map(o=>o.textContent.trim());
+    const criterios=[...el.querySelectorAll('.todo .item label')].map(l=>`  - [ ] ${l.textContent.trim()}`).join('\n');
+    const item=`### Gap ${id} · ${title}\n_${prio}_\n${criterios}`;
+    origins.forEach(o=>{if(porOrigem[o])porOrigem[o].push(item)});
+  });
+  const blocos=Object.entries(porOrigem).filter(([,v])=>v.length).map(([k,v])=>`## Origem: ${k}\n\n${v.join('\n\n')}`).join('\n\n---\n\n');
+
+  const prompt=`Você é dev da Central da UTI (Supabase/PostgREST · RPC uti_leitura). Segue o backlog de ${pendentes.length} gap(s) pendente(s) do check-list oficial da ${PROC} (Ray · BackOffice Franquias), agrupado por origem.
+
+Preciso que você:
+1. Priorize os itens por dependência técnica (o que precisa vir antes).
+2. Para cada gap, proponha o desenho (tabelas, RPC, views, triggers) e cite arquivos-alvo prováveis.
+3. Liste os itens que dependem de decisão da Isabella/Rayanne antes de codar.
+4. Depois, comece pelo primeiro em código pronto pra PR, com testes cobrindo cada critério.
+
+${blocos}
+
+## Referências
+- Check-list completo: ${REPO_URL}
+- Processo: ${PROC}
+- Plataforma: https://central-uti-stg.seazone.properties/
+- API de leitura: ${API_URL}`;
+  window.open(CLAUDE_URL+encodeURIComponent(prompt),'_blank','noopener');
+}
+
+document.querySelectorAll('.gp').forEach(el=>{
+  const id=el.dataset.id;
+  if(state['g'+id]) el.dataset.done='1';
+});
+document.querySelectorAll('input[type=checkbox]').forEach(i=>{
+  if(state[i.id]) i.checked=true;
+  i.addEventListener('change',()=>{state[i.id]=i.checked;save();});
+});
+updateProg();
+</script>
+</content>
+</invoke>
